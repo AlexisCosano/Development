@@ -60,6 +60,21 @@ bool j1App::Awake()
 	// TODO 3: Load config.xml file using load_file() method from the xml_document class.
 	// If everything goes well, load the top tag inside the xml_node property
 	// created in the last TODO
+	pugi::xml_parse_result result = main_document.load_file("config.xml");
+
+	if (result)
+	{
+		LOG("LOADING XML FILE ====================");
+		LOG("The document config.xml has been loaded without any problem.");
+		LOG("=====================================");
+	}
+	else
+	{
+		LOG("ERROR LOADING XML FILE ====================");
+		LOG("Error description: %s", result.description());
+		LOG("Error offset: %s", result.offset);
+		LOG("===========================================");
+	}
 
 	bool ret = true;
 
