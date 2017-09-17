@@ -69,16 +69,17 @@ public:
 	j1Audio*			audio;
 	j1Scene*			scene;
 
-
 private:
 
 	p2List<j1Module*>	modules;
 	uint				frames;
 	float				dt;
 
+public:
 	pugi::xml_document  main_document;
 	pugi::xml_node      node;
 
+private:
 	int					argc;
 	char**				args;
 };

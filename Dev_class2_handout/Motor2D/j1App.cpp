@@ -57,22 +57,24 @@ void j1App::AddModule(j1Module* module)
 // Called before render is available
 bool j1App::Awake()
 {
-	// TODO 3: Load config.xml file using load_file() method from the xml_document class.
-	// If everything goes well, load the top tag inside the xml_node property
-	// created in the last TODO
-	pugi::xml_parse_result result = main_document.load_file("config.xml");
+	pugi::xml_parse_result document_result = main_document.load_file("config.xml");
 
-	if (result)
+	if (document_result)
 	{
 		LOG("LOADING XML FILE ====================");
 		LOG("The document config.xml has been loaded without any problem.");
 		LOG("=====================================");
+		node = main_document.child("config");
+		//LOG("The first node is: %s", main_document.child("config").name());
+		//LOG("The second node is: %s", node.child("window").name());
+		//LOG("The first attribute from the second node is: %s", node.child("window").child("title").attribute("wtitle").value());
+		//LOG("Testing: %s", node.child_value("window"));
 	}
 	else
 	{
 		LOG("ERROR LOADING XML FILE ====================");
-		LOG("Error description: %s", result.description());
-		LOG("Error offset: %s", result.offset);
+		LOG("Error description: %s", document_result.description());
+		LOG("Error offset: %s", document_result.offset);
 		LOG("===========================================");
 	}
 
@@ -86,7 +88,23 @@ bool j1App::Awake()
 		// TODO 7: Add a new argument to the Awake method to receive a pointer to a xml node.
 		// If the section with the module name exist in config.xml, fill the pointer with the address of a valid xml_node
 		// that can be used to read all variables from that section. Send nullptr if the section does not exist in config.xml
-
+		/*
+		for (node = main_document.child("window"); node; node = node.next_sibling())
+		{
+			if (j1Module::name == node.name())
+			{
+				pugi::xml_node* node_pointer;
+				LOG("Found the node called %s, filling pointer...", node.name());
+				node_pointer = &node;
+				return(node_pointer);
+			}
+			else
+			{
+				LOG("There is no node called %s", node.name());
+				return(nullptr);
+			}
+		}
+		*/
 		ret = item->data->Awake();
 		item = item->next;
 	}
