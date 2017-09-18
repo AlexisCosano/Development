@@ -3,6 +3,7 @@
 #include "j1App.h"
 #include "j1FileSystem.h"
 #include "j1Audio.h"
+#include "j1Input.h"
 
 #include "SDL/include/SDL.h"
 #include "SDL_mixer\include\SDL_mixer.h"
@@ -26,6 +27,9 @@ bool j1Audio::Awake()
 	SDL_Init(0);
 
 	volume = App->node.child("audio").child("volume").attribute("vol").as_int();
+	max_volume = App->node.child("audio").child("volume").attribute("vol").as_int();
+	min_volume = 0;
+	muted = App->node.child("audio").child("mute").attribute("muted").as_bool();
 	
 	if(SDL_InitSubSystem(SDL_INIT_AUDIO) < 0)
 	{
@@ -74,7 +78,7 @@ bool j1Audio::CleanUp()
 		Mix_FreeChunk(item->data);
 
 	fx.clear();
-
+	
 	Mix_CloseAudio();
 	Mix_Quit();
 	SDL_QuitSubSystem(SDL_INIT_AUDIO);
@@ -132,7 +136,7 @@ bool j1Audio::PlayMusic(const char* path, float fade_time)
 		}
 	}
 
-	LOG("Successfully playing %s", path);
+	LOG("Successfully playing %s", path);	
 	return ret;
 }
 
@@ -143,7 +147,7 @@ unsigned int j1Audio::LoadFx(const char* path)
 
 	if(!active)
 		return 0;
-
+	
 	Mix_Chunk* chunk = Mix_LoadWAV(path);
 
 	if(chunk == NULL)

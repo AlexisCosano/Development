@@ -82,7 +82,7 @@ bool j1App::Awake()
 
 	p2List_item<j1Module*>* item;
 	item = modules.start;
-
+	
 	while(item != NULL && ret == true)
 	{
 		// TODO 7: Add a new argument to the Awake method to receive a pointer to a xml node.
