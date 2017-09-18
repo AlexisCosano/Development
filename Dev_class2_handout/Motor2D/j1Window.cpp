@@ -34,31 +34,38 @@ bool j1Window::Awake()
 		//Create window
 		Uint32 flags = SDL_WINDOW_SHOWN;
 
-		width = WIDTH;
-		height = HEIGHT;
-		scale = SCALE;
+		width = App->node.child("window").child("dimensions").attribute("width").as_int();
+		height = App->node.child("window").child("dimensions").attribute("height").as_int();
+		scale = App->node.child("window").child("dimensions").attribute("scale").as_int();
 
-		if(FULLSCREEN)
+		fullscreen = App->node.child("window").child("options").attribute("fullscreen").as_bool();
+		borderless = App->node.child("window").child("options").attribute("borderless").as_bool();
+		resizable = App->node.child("window").child("options").attribute("resizable").as_bool();
+		fullscreen_window = App->node.child("window").child("options").attribute("fullscreen_window").as_bool();
+
+		title = App->node.child("window").child("title").attribute("wtitle").as_string();
+
+		if(fullscreen)
 		{
 			flags |= SDL_WINDOW_FULLSCREEN;
 		}
 
-		if(BORDERLESS)
+		if(borderless)
 		{
 			flags |= SDL_WINDOW_BORDERLESS;
 		}
 
-		if(RESIZABLE)
+		if(resizable)
 		{
 			flags |= SDL_WINDOW_RESIZABLE;
 		}
 
-		if(FULLSCREEN_WINDOW)
+		if(fullscreen_window)
 		{
 			flags |= SDL_WINDOW_FULLSCREEN_DESKTOP;
 		}
 
-		window = SDL_CreateWindow(TITLE, SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, width, height, flags);
+		window = SDL_CreateWindow(title.GetString(), SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, width, height, flags);
 
 		if(window == NULL)
 		{
@@ -70,7 +77,7 @@ bool j1Window::Awake()
 			//Get window surface
 			screen_surface = SDL_GetWindowSurface(window);
 
-			App->win->SetTitle(App->node.child("window").child("title").attribute("wtitle").value());
+			//App->win->SetTitle(App->node.child("window").child("title").attribute("wtitle").value());
 			//App->win->SetTitle(App->node.child_value("window"));
 		}
 	}

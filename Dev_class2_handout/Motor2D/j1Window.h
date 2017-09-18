@@ -42,6 +42,10 @@ private:
 	uint		width;
 	uint		height;
 	uint		scale;
+	bool        fullscreen;
+	bool        borderless;
+	bool        resizable;
+	bool        fullscreen_window;
 };
 
 #endif // __j1WINDOW_H__
