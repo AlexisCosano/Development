@@ -31,7 +31,7 @@
     <ClCompile Include="PugiXml\src\pugixml.cpp">
       <Filter>Desenvolupament  ========\Tools\PuguiXML</Filter>
     </ClCompile>
-    <ClCompile Include="..\Parson\parson.c">
+    <ClCompile Include="Parson\parson.c">
       <Filter>Desenvolupament  ========\Tools\Parson</Filter>
     </ClCompile>
   </ItemGroup>
@@ -84,7 +84,7 @@
     <ClInclude Include="PugiXml\src\pugixml.hpp">
       <Filter>Desenvolupament  ========\Tools\PuguiXML</Filter>
     </ClInclude>
-    <ClInclude Include="..\Parson\parson.h">
+    <ClInclude Include="Parson\parson.h">
       <Filter>Desenvolupament  ========\Tools\Parson</Filter>
     </ClInclude>
   </ItemGroup>
