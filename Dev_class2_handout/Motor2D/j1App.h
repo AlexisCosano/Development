@@ -4,8 +4,6 @@
 #include "p2List.h"
 #include "j1Module.h"
 #include "Parson\parson.h"
-#include "PugiXml\src\pugixml.hpp"
-
 
 // Modules
 class j1Window;
@@ -78,8 +76,8 @@ private:
 	float				dt;
 
 public:
-	pugi::xml_document  main_document;
-	pugi::xml_node      node;
+	JSON_Value *  configuration;
+	JSON_Object * configuration_object;
 
 private:
 	int					argc;

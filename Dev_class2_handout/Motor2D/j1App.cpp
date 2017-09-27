@@ -57,38 +57,29 @@ void j1App::AddModule(j1Module* module)
 // Called before render is available
 bool j1App::Awake()
 {
-	pugi::xml_parse_result document_result = main_document.load_file("config.xml");
+	bool ret = true;
 
-	if (document_result)
+	// ==================================================== JSON
+	void json_set_allocation_functions(JSON_Malloc_Function malloc_fun, JSON_Free_Function free_fun);
+	configuration = json_parse_file("Configuration.json");
+	if (configuration == NULL)
 	{
-		LOG("LOADING XML FILE ====================");
-		LOG("The document config.xml has been loaded without any problem.");
-		LOG("=====================================");
-		node = main_document.child("config");
-		//LOG("The first node is: %s", main_document.child("config").name());
-		//LOG("The second node is: %s", node.child("window").name());
-		//LOG("The first attribute from the second node is: %s", node.child("window").child("title").attribute("wtitle").value());
-		//LOG("Testing: %s", node.child_value("window"));
+		LOG("ERROR LOADING JSON FILE ==================");
+		ret = false;
 	}
 	else
 	{
-		LOG("ERROR LOADING XML FILE ====================");
-		LOG("Error description: %s", document_result.description());
-		LOG("Error offset: %s", document_result.offset);
-		LOG("===========================================");
+		LOG("LOADING JSON FILE ========================");
+		configuration_object = json_value_get_object(configuration);
 	}
-
-	bool ret = true;
 
 	p2List_item<j1Module*>* item;
 	item = modules.start;
 	
 	while(item != NULL && ret == true)
 	{
-		// TODO 7: Add a new argument to the Awake method to receive a pointer to a xml node.
-		// If the section with the module name exist in config.xml, fill the pointer with the address of a valid xml_node
-		// that can be used to read all variables from that section. Send nullptr if the section does not exist in config.xml
-		ret = item->data->Awake(node.child(item->data->name.GetString()));
+		// ==================================================== JSON
+		ret = item->data->Awake(json_object_dotget_object(App->configuration_object, item->data->name.GetString()));
 		item = item->next;
 	}
 

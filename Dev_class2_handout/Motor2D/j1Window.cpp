@@ -19,7 +19,7 @@ j1Window::~j1Window()
 }
 
 // Called before render is available
-bool j1Window::Awake(pugi::xml_node&)
+bool j1Window::Awake(JSON_Object* config)
 {
 	LOG("Init SDL window & surface");
 	bool ret = true;
@@ -33,17 +33,18 @@ bool j1Window::Awake(pugi::xml_node&)
 	{
 		//Create window
 		Uint32 flags = SDL_WINDOW_SHOWN;
+		window_object = json_object_dotget_object(App->configuration_object, "window");
 
-		width = App->node.child("window").child("dimensions").attribute("width").as_int();
-		height = App->node.child("window").child("dimensions").attribute("height").as_int();
-		scale = App->node.child("window").child("dimensions").attribute("scale").as_int();
+		title = json_object_dotget_string(window_object, "wtitle");
 
-		fullscreen = App->node.child("window").child("options").attribute("fullscreen").as_bool();
-		borderless = App->node.child("window").child("options").attribute("borderless").as_bool();
-		resizable = App->node.child("window").child("options").attribute("resizable").as_bool();
-		fullscreen_window = App->node.child("window").child("options").attribute("fullscreen_window").as_bool();
-
-		title = App->node.child("window").child("title").attribute("wtitle").as_string();
+		width = json_object_dotget_number(window_object, "wwidth");
+		height = json_object_dotget_number(window_object, "wheight");
+		scale = json_object_dotget_number(window_object, "wscale");
+		
+		fullscreen = json_object_dotget_boolean(window_object, "fullscreen");
+		borderless = json_object_dotget_boolean(window_object, "borderless");
+		resizable = json_object_dotget_boolean(window_object, "resizable");
+		fullscreen_window = json_object_dotget_boolean(window_object, "fullscreenborderless");
 
 		if(fullscreen)
 		{
@@ -76,9 +77,6 @@ bool j1Window::Awake(pugi::xml_node&)
 		{
 			//Get window surface
 			screen_surface = SDL_GetWindowSurface(window);
-
-			//App->win->SetTitle(App->node.child("window").child("title").attribute("wtitle").value());
-			//App->win->SetTitle(App->node.child_value("window"));
 		}
 	}
 

@@ -1,6 +1,7 @@
 {
 	"audio": {
 		"volume": 100,
+		"maxvolume": 100,
 		"muted": false
 	},
 	"renderer": {

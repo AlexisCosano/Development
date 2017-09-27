@@ -16,7 +16,7 @@ public:
 	virtual ~j1Window();
 
 	// Called before render is available
-	bool Awake(pugi::xml_node&);
+	bool Awake(JSON_Object* config);
 
 	// Called before quitting
 	bool CleanUp();
@@ -38,14 +38,15 @@ public:
 	SDL_Surface* screen_surface;
 
 private:
-	p2SString	title;
-	uint		width;
-	uint		height;
-	uint		scale;
-	bool        fullscreen;
-	bool        borderless;
-	bool        resizable;
-	bool        fullscreen_window;
+	p2SString	  title;
+	uint		  width;
+	uint		  height;
+	uint		  scale;
+	JSON_Object * window_object;
+	bool          fullscreen;
+	bool          borderless;
+	bool          resizable;
+	bool          fullscreen_window;
 };
 
 #endif // __j1WINDOW_H__

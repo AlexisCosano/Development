@@ -18,7 +18,7 @@ public:
 	virtual ~j1Audio();
 
 	// Called before render is available
-	bool Awake(pugi::xml_node&);
+	bool Awake(JSON_Object* config);
 
 	// Called before quitting
 	bool CleanUp();
@@ -36,6 +36,7 @@ private:
 
 	_Mix_Music*			music;
 	p2List<Mix_Chunk*>	fx;
+	JSON_Object *       audio_object;
 public:
 	int                 volume;
 	int                 max_volume;
