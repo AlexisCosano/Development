@@ -118,14 +118,14 @@ uint j1Window::GetScale() const
 }
 
 // Save & Load -------------------------- 
-const bool j1Window::Save() const
+bool j1Window::Save(JSON_Object* config)
 {
 	bool ret = true;
 
 	return(ret);
 }
 
-const bool j1Window::Load()
+bool j1Window::Load(JSON_Object* config)
 {
 	bool ret = true;
 

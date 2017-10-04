@@ -60,12 +60,12 @@ public:
 	}
 
 	// Save & Load
-	const virtual bool Save() const
+	virtual bool Save(JSON_Object* config)
 	{
 		return(true);
 	}
 
-	const virtual bool Load()
+	virtual bool Load(JSON_Object* config)
 	{
 		return(true);
 	}

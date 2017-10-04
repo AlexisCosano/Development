@@ -33,8 +33,8 @@ public:
 	bool PlayFx(unsigned int fx, int repeat = 0);
 
 	// Save & Load
-	const bool Save() const;
-	const bool Load();
+	bool Save(JSON_Object* config);
+	bool Load(JSON_Object* config);
 
 private:
 

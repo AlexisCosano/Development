@@ -27,6 +27,8 @@ bool j1Render::Awake(JSON_Object* config)
 	// load flags
 	Uint32 flags = SDL_RENDERER_ACCELERATED;
 
+	render_object = json_object_dotget_object(App->camera_object, "renderer");
+
 	flags |= SDL_RENDERER_PRESENTVSYNC;
 	  
 	renderer = SDL_CreateRenderer(App->win->window, -1, flags);
@@ -38,11 +40,10 @@ bool j1Render::Awake(JSON_Object* config)
 	}
 	else
 	{
-		int my_camera_x = json_object_dotget_number(App->camera_object, "camerax");
 		camera.w = App->win->screen_surface->w;
 		camera.h = App->win->screen_surface->h;
-		camera.x = my_camera_x;
-		camera.y = 0;
+		camera.x = json_object_dotget_number(render_object, "camerax");
+		camera.y = json_object_dotget_number(render_object, "cameray");
 	}
 
 	return ret;
@@ -224,14 +225,16 @@ bool j1Render::DrawCircle(int x, int y, int radius, Uint8 r, Uint8 g, Uint8 b, U
 }
 
 // Save & Load -------------------------- 
-const bool j1Render::Save() const
+bool j1Render::Save(JSON_Object* config)
 {
 	bool ret = true;
+
+	SaveState();
 
 	return(ret);
 }
 
-const bool j1Render::Load()
+bool j1Render::Load(JSON_Object* config)
 {
 	bool ret = true;
 
@@ -242,8 +245,18 @@ const bool j1Render::Load()
 
 bool j1Render::LoadState()
 {
-	camera.x = json_object_dotget_number(App->camera_object, "camerax");
-	camera.y = json_object_dotget_number(App->camera_object, "cameray");
+	camera.x = json_object_dotget_number(render_object, "camerax");
+	camera.y = json_object_dotget_number(render_object, "cameray");
+
+	return(true);
+}
+
+bool j1Render::SaveState()
+{
+	json_object_dotset_number(render_object, "camerax", camera.x);
+	json_object_dotset_number(render_object, "cameray", camera.y);
+
+	LOG("Camera x %i", camera.x);
 
 	return(true);
 }

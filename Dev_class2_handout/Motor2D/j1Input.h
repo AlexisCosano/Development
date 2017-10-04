@@ -69,8 +69,8 @@ public:
 	void GetMouseMotion(int& x, int& y);
 
 	// Save & Load
-	const bool Save() const;
-	const bool Load();
+	bool Save(JSON_Object* config);
+	bool Load(JSON_Object* config);
 
 private:
 	bool		windowEvents[WE_COUNT];

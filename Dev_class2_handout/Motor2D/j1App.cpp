@@ -83,16 +83,6 @@ bool j1App::Awake()
 		item = item->next;
 	}
 
-	bool load_camera_config = LoadCameraConfig();
-	if (load_camera_config == true)
-	{
-		LOG("Camera configurtaion loaded. All methods loaded.");
-	}
-	else
-	{
-		LOG("ERROR LOADING CAMERA CONFIGRUATION AND/OR METHODS.");
-	}
-
 	return ret;
 }
 
@@ -241,7 +231,7 @@ const char* j1App::GetArgv(int index) const
 }
 
 // Save & Load -------------------------- 
-const bool j1App::WantToSave()
+bool j1App::WantToSave()
 {
 	bool ret = true;
 
@@ -256,7 +246,7 @@ const bool j1App::WantToSave()
 	return(ret);
 }
 
-const bool j1App::WantToLoad()
+bool j1App::WantToLoad()
 {
 	bool ret = true;
 
@@ -271,14 +261,16 @@ const bool j1App::WantToLoad()
 	return(ret);
 }
 
-const bool j1App::Save() const
+bool j1App::Save()
 {
 	bool ret = true;
+
+	SaveToFile();
 
 	return(ret);
 }
 
-const bool j1App::Load()
+bool j1App::Load()
 {
 	bool ret = true;
 
@@ -311,7 +303,28 @@ bool j1App::LoadCameraConfig()
 	while (item != NULL && ret == true)
 	{
 		// ==================================================== JSON
-		ret = item->data->Load();
+		ret = item->data->Load(json_object_dotget_object(App->configuration_object, item->data->name.GetString()));
+		item = item->next;
+	}
+
+	return ret;
+}
+
+bool j1App::SaveToFile()
+{
+	bool ret = true;
+
+	// ==================================================== JSON
+	void json_set_allocation_functions(JSON_Malloc_Function malloc_fun, JSON_Free_Function free_fun);
+	
+
+	p2List_item<j1Module*>* item;
+	item = modules.start;
+
+	while (item != NULL && ret == true)
+	{
+		// ==================================================== JSON
+		ret = item->data->Save(json_object_dotget_object(App->configuration_object, item->data->name.GetString()));
 		item = item->next;
 	}
 

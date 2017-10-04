@@ -43,12 +43,14 @@ public:
 	const char* GetArgv(int index) const;
 
 	// Real Save & Load
-	const bool Save() const;
-	const bool Load();
+	bool Save();
+	bool Load();
 
 	// Wants to Save & Load
-	const bool WantToSave();
-	const bool WantToLoad();
+	bool WantToSave();
+	bool WantToLoad();
+
+	
 
 private:
 
@@ -68,6 +70,7 @@ private:
 	bool PostUpdate();
 
 	bool LoadCameraConfig();
+	bool SaveToFile();
 
 public:
 

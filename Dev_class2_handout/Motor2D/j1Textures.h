@@ -32,8 +32,8 @@ public:
 	void				GetSize(const SDL_Texture* texture, uint& width, uint& height) const;
 
 	// Save & Load
-	const bool Save() const;
-	const bool Load();
+	bool Save(JSON_Object* config);
+	bool Load(JSON_Object* config);
 
 public:
 

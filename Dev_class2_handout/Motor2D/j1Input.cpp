@@ -158,14 +158,14 @@ void j1Input::GetMouseMotion(int& x, int& y)
 }
 
 // Save & Load -------------------------- 
-const bool j1Input::Save() const
+bool j1Input::Save(JSON_Object* config)
 {
 	bool ret = true;
 
 	return(ret);
 }
 
-const bool j1Input::Load()
+bool j1Input::Load(JSON_Object* config)
 {
 	bool ret = true;
 

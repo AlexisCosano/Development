@@ -120,14 +120,14 @@ void j1Textures::GetSize(const SDL_Texture* texture, uint& width, uint& height) 
 }
 
 // Save & Load -------------------------- 
-const bool j1Textures::Save() const
+bool j1Textures::Save(JSON_Object* config)
 {
 	bool ret = true;
 
 	return(ret);
 }
 
-const bool j1Textures::Load()
+bool j1Textures::Load(JSON_Object* config)
 {
 	bool ret = true;
 

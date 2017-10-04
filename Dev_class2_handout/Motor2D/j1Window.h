@@ -31,8 +31,8 @@ public:
 	uint GetScale() const;
 
 	// Save & Load
-	const bool Save() const;
-	const bool Load();
+	bool Save(JSON_Object* config);
+	bool Load(JSON_Object* config);
 
 public:
 	//The window we'll be rendering to

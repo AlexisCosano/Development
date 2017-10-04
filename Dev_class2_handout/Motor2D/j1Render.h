@@ -40,13 +40,15 @@ public:
 	void SetBackgroundColor(SDL_Color color);
 
 	// Save & Load
-	const bool Save() const;
-	const bool Load();
+	bool Save(JSON_Object* config);
+	bool Load(JSON_Object* config);
 
 	bool LoadState();
+	bool SaveState();
 
 public:
 
+	JSON_Object *   render_object;
 	SDL_Renderer*	renderer;
 	SDL_Rect		camera;
 	SDL_Rect		viewport;

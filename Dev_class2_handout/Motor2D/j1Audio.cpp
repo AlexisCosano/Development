@@ -182,14 +182,14 @@ bool j1Audio::PlayFx(unsigned int id, int repeat)
 }
 
 // Save & Load -------------------------- 
-const bool j1Audio::Save() const
+bool j1Audio::Save(JSON_Object* config)
 {
 	bool ret = true;
 
 	return(ret);
 }
 
-const bool j1Audio::Load()
+bool j1Audio::Load(JSON_Object* config)
 {
 	bool ret = true;
 
