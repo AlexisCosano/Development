@@ -116,3 +116,18 @@ uint j1Window::GetScale() const
 {
 	return scale;
 }
+
+// Save & Load -------------------------- 
+const bool j1Window::Save() const
+{
+	bool ret = true;
+
+	return(ret);
+}
+
+const bool j1Window::Load()
+{
+	bool ret = true;
+
+	return(ret);
+}

@@ -118,3 +118,18 @@ void j1Textures::GetSize(const SDL_Texture* texture, uint& width, uint& height) 
 {
 	SDL_QueryTexture((SDL_Texture*)texture, NULL, NULL, (int*) &width, (int*) &height);
 }
+
+// Save & Load -------------------------- 
+const bool j1Textures::Save() const
+{
+	bool ret = true;
+
+	return(ret);
+}
+
+const bool j1Textures::Load()
+{
+	bool ret = true;
+
+	return(ret);
+}

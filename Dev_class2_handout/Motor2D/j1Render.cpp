@@ -38,9 +38,10 @@ bool j1Render::Awake(JSON_Object* config)
 	}
 	else
 	{
+		int my_camera_x = json_object_dotget_number(App->camera_object, "camerax");
 		camera.w = App->win->screen_surface->w;
 		camera.h = App->win->screen_surface->h;
-		camera.x = 0;
+		camera.x = my_camera_x;
 		camera.y = 0;
 	}
 
@@ -220,4 +221,29 @@ bool j1Render::DrawCircle(int x, int y, int radius, Uint8 r, Uint8 g, Uint8 b, U
 	}
 
 	return ret;
+}
+
+// Save & Load -------------------------- 
+const bool j1Render::Save() const
+{
+	bool ret = true;
+
+	return(ret);
+}
+
+const bool j1Render::Load()
+{
+	bool ret = true;
+
+	LoadState();
+
+	return(ret);
+}
+
+bool j1Render::LoadState()
+{
+	camera.x = json_object_dotget_number(App->camera_object, "camerax");
+	camera.y = json_object_dotget_number(App->camera_object, "cameray");
+
+	return(true);
 }

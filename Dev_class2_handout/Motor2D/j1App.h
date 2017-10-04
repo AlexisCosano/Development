@@ -42,6 +42,14 @@ public:
 	int GetArgc() const;
 	const char* GetArgv(int index) const;
 
+	// Real Save & Load
+	const bool Save() const;
+	const bool Load();
+
+	// Wants to Save & Load
+	const bool WantToSave();
+	const bool WantToLoad();
+
 private:
 
 	// Call modules before each loop iteration
@@ -58,6 +66,8 @@ private:
 
 	// Call modules after each loop iteration
 	bool PostUpdate();
+
+	bool LoadCameraConfig();
 
 public:
 
@@ -78,6 +88,9 @@ private:
 public:
 	JSON_Value *  configuration;
 	JSON_Object * configuration_object;
+
+	JSON_Value * camera_config;
+	JSON_Object * camera_object;
 
 private:
 	int					argc;

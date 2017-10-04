@@ -39,6 +39,12 @@ public:
 	// Set background color
 	void SetBackgroundColor(SDL_Color color);
 
+	// Save & Load
+	const bool Save() const;
+	const bool Load();
+
+	bool LoadState();
+
 public:
 
 	SDL_Renderer*	renderer;

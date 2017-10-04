@@ -59,6 +59,17 @@ public:
 		return true;
 	}
 
+	// Save & Load
+	const virtual bool Save() const
+	{
+		return(true);
+	}
+
+	const virtual bool Load()
+	{
+		return(true);
+	}
+
 public:
 
 	p2SString	name;

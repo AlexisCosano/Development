@@ -180,3 +180,18 @@ bool j1Audio::PlayFx(unsigned int id, int repeat)
 
 	return ret;
 }
+
+// Save & Load -------------------------- 
+const bool j1Audio::Save() const
+{
+	bool ret = true;
+
+	return(ret);
+}
+
+const bool j1Audio::Load()
+{
+	bool ret = true;
+
+	return(ret);
+}

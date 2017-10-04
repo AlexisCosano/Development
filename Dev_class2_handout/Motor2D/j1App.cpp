@@ -83,6 +83,16 @@ bool j1App::Awake()
 		item = item->next;
 	}
 
+	bool load_camera_config = LoadCameraConfig();
+	if (load_camera_config == true)
+	{
+		LOG("Camera configurtaion loaded. All methods loaded.");
+	}
+	else
+	{
+		LOG("ERROR LOADING CAMERA CONFIGRUATION AND/OR METHODS.");
+	}
+
 	return ret;
 }
 
@@ -228,4 +238,82 @@ const char* j1App::GetArgv(int index) const
 		return args[index];
 	else
 		return NULL;
+}
+
+// Save & Load -------------------------- 
+const bool j1App::WantToSave()
+{
+	bool ret = true;
+
+	if (ret == true)
+	{
+		Save();
+		LOG("File saved correctly");
+	}
+	else
+		LOG("Could not save to file");
+
+	return(ret);
+}
+
+const bool j1App::WantToLoad()
+{
+	bool ret = true;
+
+	if (ret == true)
+	{
+		Load();
+		LOG("File loaded correctly");
+	}
+	else
+		LOG("Coud not load from file");
+
+	return(ret);
+}
+
+const bool j1App::Save() const
+{
+	bool ret = true;
+
+	return(ret);
+}
+
+const bool j1App::Load()
+{
+	bool ret = true;
+
+	LoadCameraConfig();
+
+	return(ret);
+}
+
+bool j1App::LoadCameraConfig()
+{
+	bool ret = true;
+
+	// ==================================================== JSON
+	void json_set_allocation_functions(JSON_Malloc_Function malloc_fun, JSON_Free_Function free_fun);
+	camera_config = json_parse_file("camera.json");
+	if (camera_config == NULL)
+	{
+		LOG("ERROR LOADING JSON FILE ==================");
+		ret = false;
+	}
+	else
+	{
+		LOG("LOADING JSON FILE ========================");
+		camera_object = json_value_get_object(camera_config);
+	}
+
+	p2List_item<j1Module*>* item;
+	item = modules.start;
+
+	while (item != NULL && ret == true)
+	{
+		// ==================================================== JSON
+		ret = item->data->Load();
+		item = item->next;
+	}
+
+	return ret;
 }
