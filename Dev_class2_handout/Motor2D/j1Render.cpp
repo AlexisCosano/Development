@@ -243,20 +243,25 @@ bool j1Render::Load(JSON_Object* config)
 	return(ret);
 }
 
-bool j1Render::LoadState()
-{
-	camera.x = json_object_dotget_number(render_object, "camerax");
-	camera.y = json_object_dotget_number(render_object, "cameray");
-
-	return(true);
-}
-
 bool j1Render::SaveState()
 {
 	json_object_dotset_number(render_object, "camerax", camera.x);
 	json_object_dotset_number(render_object, "cameray", camera.y);
 
 	LOG("Camera x %i", camera.x);
+	LOG("Camera y %i", camera.y);
 
 	return(true);
 }
+
+bool j1Render::LoadState()
+{
+	camera.x = json_object_dotget_number(render_object, "camerax");
+	camera.y = json_object_dotget_number(render_object, "cameray");
+
+	LOG("Camera x %i", camera.x);
+	LOG("Camera y %i", camera.y);
+
+	return(true);
+}
+

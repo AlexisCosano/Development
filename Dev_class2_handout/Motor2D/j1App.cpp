@@ -303,7 +303,7 @@ bool j1App::LoadCameraConfig()
 	while (item != NULL && ret == true)
 	{
 		// ==================================================== JSON
-		ret = item->data->Load(json_object_dotget_object(App->configuration_object, item->data->name.GetString()));
+		ret = item->data->Load(json_object_dotget_object(App->camera_object, item->data->name.GetString()));
 		item = item->next;
 	}
 
@@ -324,7 +324,7 @@ bool j1App::SaveToFile()
 	while (item != NULL && ret == true)
 	{
 		// ==================================================== JSON
-		ret = item->data->Save(json_object_dotget_object(App->configuration_object, item->data->name.GetString()));
+		ret = item->data->Save(json_object_dotget_object(App->camera_object, item->data->name.GetString()));
 		item = item->next;
 	}
 
