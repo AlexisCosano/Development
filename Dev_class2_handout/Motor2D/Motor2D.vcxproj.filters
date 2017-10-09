@@ -28,9 +28,6 @@
     <ClCompile Include="j1Scene.cpp">
       <Filter>Desenvolupament  ========\Scenes</Filter>
     </ClCompile>
-    <ClCompile Include="Parson\parson.c">
-      <Filter>Desenvolupament  ========\Tools\Parson</Filter>
-    </ClCompile>
     <ClCompile Include="PugiXml\src\pugixml.cpp">
       <Filter>Desenvolupament  ========\Tools\PugiXML</Filter>
     </ClCompile>
@@ -78,9 +75,6 @@
     <ClInclude Include="j1Scene.h">
       <Filter>Desenvolupament  ========\Scenes</Filter>
     </ClInclude>
-    <ClInclude Include="Parson\parson.h">
-      <Filter>Desenvolupament  ========\Tools\Parson</Filter>
-    </ClInclude>
     <ClInclude Include="PugiXml\src\pugiconfig.hpp">
       <Filter>Desenvolupament  ========\Tools\PugiXML</Filter>
     </ClInclude>
@@ -103,9 +97,6 @@
     </Filter>
     <Filter Include="Desenvolupament  ========\Modules">
       <UniqueIdentifier>{244722d1-90ce-423d-8e7a-556211865a32}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Desenvolupament  ========\Tools\Parson">
-      <UniqueIdentifier>{44a6a222-28fa-4bb5-8dd2-ec30ed46ede0}</UniqueIdentifier>
     </Filter>
     <Filter Include="Desenvolupament  ========\Tools\PugiXML">
       <UniqueIdentifier>{b114179c-45be-4f3f-82ef-2eb59ac7739c}</UniqueIdentifier>
