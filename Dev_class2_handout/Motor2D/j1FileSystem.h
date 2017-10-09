@@ -17,7 +17,7 @@ public:
 	virtual ~j1FileSystem();
 
 	// Called before render is available
-	bool Awake(JSON_Object* config);
+	bool Awake(pugi::xml_node&);
 
 	// Called before quitting
 	bool CleanUp();

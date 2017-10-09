@@ -16,7 +16,7 @@ public:
 	virtual ~j1Window();
 
 	// Called before render is available
-	bool Awake(JSON_Object* config);
+	bool Awake(pugi::xml_node&);
 
 	// Called before quitting
 	bool CleanUp();
@@ -30,10 +30,6 @@ public:
 	// Retrieve window scale
 	uint GetScale() const;
 
-	// Save & Load
-	bool Save(JSON_Object* config);
-	bool Load(JSON_Object* config);
-
 public:
 	//The window we'll be rendering to
 	SDL_Window* window;
@@ -46,7 +42,6 @@ private:
 	uint		  width;
 	uint		  height;
 	uint		  scale;
-	JSON_Object * window_object;
 	bool          fullscreen;
 	bool          borderless;
 	bool          resizable;

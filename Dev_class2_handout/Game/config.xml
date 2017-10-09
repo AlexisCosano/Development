@@ -1,6 +1,6 @@
 <config>
 	<window>
-		<title wtitle="Development subject 2D engine" />
+		<title wtitle="Ridash" />
 		<company wcompany="CITM" />
 		<year wyear="2017" />
 		<dimensions width="1024" height="768" scale="1" />

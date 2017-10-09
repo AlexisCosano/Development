@@ -20,18 +20,16 @@ j1Audio::~j1Audio()
 {}
 
 // Called before render is available
-bool j1Audio::Awake(JSON_Object* config)
+bool j1Audio::Awake(pugi::xml_node&)
 {
 	LOG("Loading Audio Mixer");
 	bool ret = true;
 	SDL_Init(0);
 
-	audio_object = json_object_dotget_object(App->configuration_object, "audio");
-
-	volume = json_object_dotget_number(audio_object, "volume");
-	max_volume = json_object_dotget_number(audio_object, "maxvolume");
+	volume = App->node.child("audio").child("volume").attribute("vol").as_int();
+	max_volume = App->node.child("audio").child("volume").attribute("vol").as_int();
 	min_volume = 0;
-	muted = json_object_dotget_boolean(audio_object, "muted");
+	muted = App->node.child("audio").child("mute").attribute("muted").as_bool();
 	
 	if(SDL_InitSubSystem(SDL_INIT_AUDIO) < 0)
 	{
@@ -179,19 +177,4 @@ bool j1Audio::PlayFx(unsigned int id, int repeat)
 	}
 
 	return ret;
-}
-
-// Save & Load -------------------------- 
-bool j1Audio::Save(JSON_Object* config)
-{
-	bool ret = true;
-
-	return(ret);
-}
-
-bool j1Audio::Load(JSON_Object* config)
-{
-	bool ret = true;
-
-	return(ret);
 }

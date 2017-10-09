@@ -7,7 +7,7 @@
 #define __j1MODULE_H__
 
 #include "p2SString.h"
-#include "Parson\parson.h"
+#include "PugiXml\src\pugixml.hpp"
 
 class j1App;
 
@@ -24,7 +24,7 @@ public:
 	}
 
 	// Called before render is available
-	virtual bool Awake(JSON_Object* config)
+	virtual bool Awake(pugi::xml_node&)
 	{
 		return true;
 	}
@@ -57,17 +57,6 @@ public:
 	virtual bool CleanUp()
 	{
 		return true;
-	}
-
-	// Save & Load
-	virtual bool Save(JSON_Object* config)
-	{
-		return(true);
-	}
-
-	virtual bool Load(JSON_Object* config)
-	{
-		return(true);
 	}
 
 public:

@@ -20,14 +20,12 @@ j1Render::~j1Render()
 {}
 
 // Called before render is available
-bool j1Render::Awake(JSON_Object* config)
+bool j1Render::Awake(pugi::xml_node&)
 {
 	LOG("Create SDL rendering context");
 	bool ret = true;
 	// load flags
 	Uint32 flags = SDL_RENDERER_ACCELERATED;
-
-	render_object = json_object_dotget_object(App->camera_object, "renderer");
 
 	flags |= SDL_RENDERER_PRESENTVSYNC;
 	  
@@ -42,8 +40,8 @@ bool j1Render::Awake(JSON_Object* config)
 	{
 		camera.w = App->win->screen_surface->w;
 		camera.h = App->win->screen_surface->h;
-		camera.x = json_object_dotget_number(render_object, "camerax");
-		camera.y = json_object_dotget_number(render_object, "cameray");
+		camera.x = 0;
+		camera.y = 0;
 	}
 
 	return ret;
@@ -223,45 +221,3 @@ bool j1Render::DrawCircle(int x, int y, int radius, Uint8 r, Uint8 g, Uint8 b, U
 
 	return ret;
 }
-
-// Save & Load -------------------------- 
-bool j1Render::Save(JSON_Object* config)
-{
-	bool ret = true;
-
-	SaveState();
-
-	return(ret);
-}
-
-bool j1Render::Load(JSON_Object* config)
-{
-	bool ret = true;
-
-	LoadState();
-
-	return(ret);
-}
-
-bool j1Render::SaveState()
-{
-	json_object_dotset_number(render_object, "camerax", camera.x);
-	json_object_dotset_number(render_object, "cameray", camera.y);
-
-	LOG("Camera x %i", camera.x);
-	LOG("Camera y %i", camera.y);
-
-	return(true);
-}
-
-bool j1Render::LoadState()
-{
-	camera.x = json_object_dotget_number(render_object, "camerax");
-	camera.y = json_object_dotget_number(render_object, "cameray");
-
-	LOG("Camera x %i", camera.x);
-	LOG("Camera y %i", camera.y);
-
-	return(true);
-}
-

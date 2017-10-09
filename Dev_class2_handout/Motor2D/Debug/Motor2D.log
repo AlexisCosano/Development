@@ -1,7 +1,12 @@
-﻿  j1Render.cpp
-e:\repositorios\development\dev_class2_handout\motor2d\j1render.cpp(45): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-e:\repositorios\development\dev_class2_handout\motor2d\j1render.cpp(46): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-e:\repositorios\development\dev_class2_handout\motor2d\j1render.cpp(259): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-e:\repositorios\development\dev_class2_handout\motor2d\j1render.cpp(260): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+﻿  j1App.cpp
+  Generating Code...
+  Skipping... (no relevant changes detected)
+  j1Window.cpp
+  j1Textures.cpp
+  j1Scene.cpp
+  j1Render.cpp
+  j1Main.cpp
+  j1Input.cpp
+  j1Audio.cpp
   Motor2D.vcxproj -> E:\Repositorios\Development\Dev_class2_handout\Debug\Motor 2D.exe
   Motor2D.vcxproj -> E:\Repositorios\Development\Dev_class2_handout\Debug\Motor 2D.pdb (Full PDB)

@@ -18,7 +18,7 @@ j1Textures::~j1Textures()
 {}
 
 // Called before render is available
-bool j1Textures::Awake(JSON_Object* config)
+bool j1Textures::Awake(pugi::xml_node&)
 {
 	LOG("Init Image library");
 	bool ret = true;
@@ -117,19 +117,4 @@ SDL_Texture* const j1Textures::LoadSurface(SDL_Surface* surface)
 void j1Textures::GetSize(const SDL_Texture* texture, uint& width, uint& height) const
 {
 	SDL_QueryTexture((SDL_Texture*)texture, NULL, NULL, (int*) &width, (int*) &height);
-}
-
-// Save & Load -------------------------- 
-bool j1Textures::Save(JSON_Object* config)
-{
-	bool ret = true;
-
-	return(ret);
-}
-
-bool j1Textures::Load(JSON_Object* config)
-{
-	bool ret = true;
-
-	return(ret);
 }

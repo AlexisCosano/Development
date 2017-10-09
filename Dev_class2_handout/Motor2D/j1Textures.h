@@ -17,7 +17,7 @@ public:
 	virtual ~j1Textures();
 
 	// Called before render is available
-	bool Awake(JSON_Object* config);
+	bool Awake(pugi::xml_node&);
 
 	// Called before the first frame
 	bool Start();
@@ -30,10 +30,6 @@ public:
 	bool				UnLoad(SDL_Texture* texture);
 	SDL_Texture* const	LoadSurface(SDL_Surface* surface);
 	void				GetSize(const SDL_Texture* texture, uint& width, uint& height) const;
-
-	// Save & Load
-	bool Save(JSON_Object* config);
-	bool Load(JSON_Object* config);
 
 public:
 

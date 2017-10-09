@@ -15,7 +15,7 @@ public:
 	virtual ~j1Render();
 
 	// Called before render is available
-	bool Awake(JSON_Object* config);
+	bool Awake(pugi::xml_node&);
 
 	// Called before the first frame
 	bool Start();
@@ -39,16 +39,8 @@ public:
 	// Set background color
 	void SetBackgroundColor(SDL_Color color);
 
-	// Save & Load
-	bool Save(JSON_Object* config);
-	bool Load(JSON_Object* config);
-
-	bool LoadState();
-	bool SaveState();
-
 public:
 
-	JSON_Object *   render_object;
 	SDL_Renderer*	renderer;
 	SDL_Rect		camera;
 	SDL_Rect		viewport;

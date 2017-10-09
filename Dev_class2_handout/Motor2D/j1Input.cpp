@@ -23,7 +23,7 @@ j1Input::~j1Input()
 }
 
 // Called before render is available
-bool j1Input::Awake(JSON_Object* config)
+bool j1Input::Awake(pugi::xml_node&)
 {
 	LOG("Init SDL input event system");
 	bool ret = true;
@@ -155,19 +155,4 @@ void j1Input::GetMouseMotion(int& x, int& y)
 {
 	x = mouse_motion_x;
 	y = mouse_motion_y;
-}
-
-// Save & Load -------------------------- 
-bool j1Input::Save(JSON_Object* config)
-{
-	bool ret = true;
-
-	return(ret);
-}
-
-bool j1Input::Load(JSON_Object* config)
-{
-	bool ret = true;
-
-	return(ret);
 }

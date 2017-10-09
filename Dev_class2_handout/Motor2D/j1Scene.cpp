@@ -45,12 +45,6 @@ bool j1Scene::PreUpdate()
 // Called each loop iteration
 bool j1Scene::Update(float dt)
 {
-	if (App->input->GetKey(SDL_SCANCODE_S) == KEY_REPEAT)
-		App->WantToSave();
-	
-	if (App->input->GetKey(SDL_SCANCODE_L) == KEY_REPEAT)
-		App->WantToLoad();
-
 	if (App->input->GetKey(SDL_SCANCODE_UP) == KEY_REPEAT)
 		App->render->camera.y -= 1;
 

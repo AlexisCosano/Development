@@ -36,7 +36,7 @@ public:
 	virtual ~j1Input();
 
 	// Called before render is available
-	bool Awake(JSON_Object* config);
+	bool Awake(pugi::xml_node&);
 
 	// Called before the first frame
 	bool Start();
@@ -67,10 +67,6 @@ public:
 	// Get mouse / axis position
 	void GetMousePosition(int &x, int &y);
 	void GetMouseMotion(int& x, int& y);
-
-	// Save & Load
-	bool Save(JSON_Object* config);
-	bool Load(JSON_Object* config);
 
 private:
 	bool		windowEvents[WE_COUNT];
